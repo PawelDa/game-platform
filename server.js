@@ -1,14 +1,17 @@
 const express = require('express');
-const app = express();
 const connectDB = require('./config/db');
+
+const app = express();
 
 // Connect DB
 connectDB();
 
 // Initialize Middleware
-app.use(express.json({ extended: false }));
+app.use(express.json());
 
-app.get('/', (req, res) => res.send('API running'));
+app.get('/', (req, res, next) => {
+    res.send('API running')
+});
 
 // Define Routes
 app.use('/api/users', require('./routes/api/users'));

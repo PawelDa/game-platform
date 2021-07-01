@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const jwt = requre('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 // Getting User model
 const User = require('../../models/User');
@@ -17,6 +18,7 @@ router.post(
   body('email', 'Please provide a valid email address').isEmail(),
   // password validation
   body('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
+
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

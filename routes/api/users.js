@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
-const jwt = requre('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const config = require('config');
 const { body, validationResult } = require('express-validator');
 // Getting User model
 const User = require('../../models/User');
+const { ReplSet } = require('mongodb');
 
 // @route           POST api/users
 // @description     Register user
@@ -62,8 +63,15 @@ router.post(
         }
       }
 
-      jwt.sign(payload, )
-
+      jwt.sign(
+        payload,
+        config.get('jwtToken'),
+        { expiresIn: 8640 }, // expires in 24h
+        (err, token) => {
+          if(err) throw err;
+          res.json({ token });
+        }
+      );
     } catch(err) {
       console.error(err.message);
       res.status(500).send('Server error');

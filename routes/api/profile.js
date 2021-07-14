@@ -46,8 +46,13 @@ router.post('/', auth, async (req, res) => {
         { $set: profileFields },
         { new: true }
       );
+
       return res.json(profile);
     }
+
+    // Create profile
+    profile = new Profile(profileFields);
+    await profile.save();
   } catch(err) {
     console.error(err.message);
     res.status(500).send('Server Error');

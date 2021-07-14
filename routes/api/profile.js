@@ -37,7 +37,17 @@ router.post('/', auth, async (req, res) => {
   profileFields.user = req.user.id;
   if (bio) profileFields.bio = bio;
   try {
+    let profile = await Profile.findOne({ user: req.user.id });
 
+    // Update profile
+    if(profile) {
+      profile = await Profile.findOneAndUpdate(
+        { user: req.user.id },
+        { $set: profileFields },
+        { new: true }
+      );
+      return res.json(profile);
+    }
   } catch(err) {
     console.error(err.message);
     res.status(500).send('Server Error');

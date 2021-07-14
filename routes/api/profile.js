@@ -29,7 +29,6 @@ router.get('/me', auth, async (req, res) => {
 // @route           POST api/profile
 // @description     Create or update profile
 // @acces           Private
-
 router.post('/', auth, async (req, res) => {
   const { bio } = req.body;
 
@@ -37,6 +36,12 @@ router.post('/', auth, async (req, res) => {
   const profileFields = {};
   profileFields.user = req.user.id;
   if (bio) profileFields.bio = bio;
-})
+  try {
+
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;

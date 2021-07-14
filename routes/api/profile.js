@@ -26,4 +26,17 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
+// @route           POST api/profile
+// @description     Create or update profile
+// @acces           Private
+
+router.post('/', auth, async (req, res) => {
+  const { bio } = req.body;
+
+  //Build profile object
+  const profileFields = {};
+  profileFields.user = req.user.id;
+  if (bio) profileFields.bio = bio;
+})
+
 module.exports = router;

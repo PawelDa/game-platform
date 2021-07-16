@@ -98,8 +98,11 @@ router.delete('/', auth, async (req, res) => {
     await Profile.findByIdAndRemove({ user: req.user.id });
     // Remove User
     await User.findByIdAndRemove({ _id: req.user.id });
-  } catch (error) {
 
+    res.json({ msg: 'User deleted' });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
   }
 });
 

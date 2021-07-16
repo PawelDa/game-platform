@@ -89,4 +89,15 @@ router.get('/user/:user_id', async (req, res) => {
   }
 });
 
+// @route           DELETE api/profile
+// @description     Delete profile and user
+// @acces           Private
+router.delete('/', async (req, res) => {
+  try {
+
+  } catch (error) {
+
+  }
+});
+
 module.exports = router;

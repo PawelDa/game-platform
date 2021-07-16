@@ -94,9 +94,10 @@ router.get('/user/:user_id', async (req, res) => {
 // @acces           Private
 router.delete('/', auth, async (req, res) => {
   try {
-    // Remove profile
+    // Remove Profile
     await Profile.findByIdAndRemove({ user: req.user.id });
-
+    // Remove User
+    await User.findByIdAndRemove({ _id: req.user.id });
   } catch (error) {
 
   }

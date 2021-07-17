@@ -21,7 +21,6 @@ const TableSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  // TODO add another 2 players to table schema which were not admins
 });
 
 module.exports = Table = mongoose.model('table', TableSchema);

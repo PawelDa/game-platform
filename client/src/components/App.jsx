@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
-import Navbar from './components/layout/Navbar';
-import Landing from './components/layout/Landing';
-import './App.scss';
+import Navbar from './Navbar.jsx';
+import Landing from './Landing.jsx';
 
 function App() {
   return (

@@ -8,24 +8,70 @@ const Register = () => {
     password2: ''
   });
 
+  const { name, email, password, password2 } = formData;
+
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = e => {
+    e.preventDefault();
+    if (password !== password2) {
+      // TODO add allert later for now console.log
+      console.log('Passwords do not match');
+    } else {
+      console.log(formData);
+    }
+  }
+
   return (
     <Fragment>
-      <form>
+      <form onSubmit={e => onSubmit(e)}>
         <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">User name</label>
-          <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+          <input
+            placeholder="Username"
+            name='name'
+            type="text"
+            className="form-control"
+            id="exampleInputEmail1"
+            value={name}
+            onChange={e => onChange(e)}
+            required
+          />
         </div>
         <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">Email address</label>
-          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+          <input
+            placeholder="Email address"
+            name='email'
+            type="email"
+            className="form-control"
+            id="exampleInputEmail1"
+            value={email}
+            onChange={e => onChange(e)}
+            required
+          />
         </div>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">Password</label>
-          <input type="password" className="form-control" id="exampleInputPassword1" />
+          <input
+            placeholder="Password"
+            name='password'
+            type="password"
+            className="form-control"
+            id="exampleInputPassword1"
+            value={password}
+            onChange={e => onChange(e)}
+            required
+          />
         </div>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">Confirm Password</label>
-          <input type="password" className="form-control" id="exampleInputPassword1" />
+          <input
+            placeholder="Confirm password"
+            name='password2'
+            type="password"
+            className="form-control"
+            id="exampleInputPassword1"
+            value={password2}
+            onChange={e => onChange(e)}
+            required
+          />
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>

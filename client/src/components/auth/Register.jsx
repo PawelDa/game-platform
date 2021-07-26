@@ -1,4 +1,6 @@
 import React, { Fragment, useState } from 'react';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -79,4 +81,4 @@ const Register = () => {
   )
 };
 
-export default Register;
+export default connect(null, { setAlert })(Register);

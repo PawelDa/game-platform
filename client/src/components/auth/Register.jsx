@@ -26,7 +26,7 @@ const Register = ({ setAlert }) => {
 
   return (
     <Fragment>
-      <form onSubmit={e => onSubmit(e)}>
+      <form className="py-3" onSubmit={e => onSubmit(e)}>
         <div className="mb-3">
           <input
             placeholder="Username"

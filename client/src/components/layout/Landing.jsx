@@ -5,7 +5,7 @@ const Landing = () => {
   return (
     <div className="card text-center">
       <div className="card-body">
-        <h5 className="card-title">1000 card game</h5>
+        <h3 className="card-title">1000 card game</h3>
         <p className="card-text">Create an account or login to enjoy the game!</p>
         <div className="d-grid gap-2 d-md-block">
           <Link to="/register" className="btn btn-primary me-md-2 landing-button">Sign Up</Link>

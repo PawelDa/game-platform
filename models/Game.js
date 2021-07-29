@@ -17,9 +17,49 @@ const GameSchema = new mongoose.Schema({
       }
     }
   ],
-  // TODO array of deals
   deals: [
-
+    { 
+      usersCards: [
+        {
+          user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'users'
+          },
+          // Cards in each deal will be an array of numbers.
+          // Each number will represent different card for example: 7 => queen heart
+          cards: [
+            {
+              figure: {
+                type: Number
+              },
+              special: {
+                type: Boolean,
+                default: false
+              },
+            }
+          ]
+        }
+      ],
+      moves: [
+        [
+          {
+            user: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: 'users'
+            },
+            card: {
+              figure: {
+                type: Number
+              },
+              special: {
+                type: Boolean,
+                default: false
+              },
+            }
+          }
+        ]
+      ]
+    }
   ]
 });
 

@@ -11,12 +11,13 @@ const GameSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
       },
-      points: {
+      score: {
         type: Number,
         default: 0
       }
     }
   ],
+
   deals: [
     { 
       usersCards: [
@@ -58,6 +59,18 @@ const GameSchema = new mongoose.Schema({
             }
           }
         ]
+      ],
+      score: [
+        {
+          user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'users'
+          },
+          score: {
+            type: Number,
+            default: 0
+          }
+        }
       ]
     }
   ]

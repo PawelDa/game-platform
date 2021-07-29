@@ -1,15 +1,7 @@
 const mongoose = require('mongoose');
 
 const TableSchema = new mongoose.Schema({
-  admin: {
-    type: Schema.Types.ObjectId,
-    ref: 'users'
-  },
-  secondPlayer: {
-    type: Schema.Types.ObjectId,
-    ref: 'users'
-  },
-  thirdPlayer: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
@@ -17,6 +9,14 @@ const TableSchema = new mongoose.Schema({
     type: Number,
     default: 3
   },
+  otherPlayers: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      }
+    }
+  ],
   date: {
     type: Date,
     default: Date.now

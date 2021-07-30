@@ -37,7 +37,6 @@ const Register = ({ setAlert, register }) => {
             id="exampleInputEmail1"
             value={name}
             onChange={e => onChange(e)}
-            required
           />
         </div>
         <div className="mb-3">
@@ -49,7 +48,6 @@ const Register = ({ setAlert, register }) => {
             id="exampleInputEmail1"
             value={email}
             onChange={e => onChange(e)}
-            required
           />
         </div>
         <div className="mb-3">
@@ -61,7 +59,6 @@ const Register = ({ setAlert, register }) => {
             id="exampleInputPassword1"
             value={password}
             onChange={e => onChange(e)}
-            required
           />
         </div>
         <div className="mb-3">
@@ -73,7 +70,6 @@ const Register = ({ setAlert, register }) => {
             id="exampleInputPassword1"
             value={password2}
             onChange={e => onChange(e)}
-            required
           />
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>

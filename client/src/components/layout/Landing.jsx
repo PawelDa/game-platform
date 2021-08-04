@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Landing = () => {
   return (
@@ -7,10 +6,6 @@ const Landing = () => {
       <div className="card-body">
         <h3 className="card-title">1000 card game</h3>
         <p className="card-text">Create an account or login to enjoy the game!</p>
-        <div className="d-grid gap-2 d-md-block">
-          <Link to="/register" className="btn btn-primary me-md-2 landing-button">Sign Up</Link>
-          <Link to="/login" className="btn btn-primary landing-button">Login</Link>
-        </div>
       </div>
     </div>
   )

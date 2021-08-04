@@ -12,7 +12,7 @@ const User = require('../../models/User');
 router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id }).populate(
-      'user',
+      'users',
       ['name', 'avatar']
     );
 

@@ -9,6 +9,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <div className="collapse navbar-collapse" id="navbarText">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
+          <Link className="nav-link" to='/dashboard'>Dashboard</Link>
+        </li>
+        <li className="nav-item">
           <a onClick={logout} className="nav-link" href='#!'>Logout</a>
         </li>
       </ul>

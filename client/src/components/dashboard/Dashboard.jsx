@@ -4,15 +4,18 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getCurrentProfile } from '../../actions/profile';
 
-const Dashboard = ({ getCurrentProfile, auth, profile: { profile, loading } }) => {
+const Dashboard = ({
+  getCurrentProfile,
+  auth: { user },
+  profile: { profile, loading }
+}) => {
   useEffect(() => {
     getCurrentProfile();
   }, []);
 
   return loading && profile === null ? <Spinner /> : <Fragment>
     <h1 className="large">Dashboard</h1>
-    <p><i className="fas fa-user"></i>fdsafa</p>
-      
+    <p><i className="fas fa-user"></i> Welcome {user && user.name}</p>
   </Fragment>;
 };
 

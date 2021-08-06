@@ -16,6 +16,11 @@ const Dashboard = ({
   return loading && profile === null ? <Spinner /> : <Fragment>
     <h1 className="large">Dashboard</h1>
     <p><i className="fas fa-user"></i> Welcome {user && user.name}</p>
+    {profile !== null ? (
+      <Fragment>Has Profile</Fragment>
+    ) : (
+      <Fragment>Has NOT Profile</Fragment>
+    )}
   </Fragment>;
 };
 

@@ -10,7 +10,7 @@ const Dashboard = ({ getCurrentProfile, auth, profile: { profile, loading } }) =
   }, []);
 
   return loading && profile === null ? <Spinner /> : <Fragment>
-    test
+    Hello
   </Fragment>;
 };
 

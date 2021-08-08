@@ -1,9 +1,29 @@
-import React = from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const CreateProfile = () => {
+  const [formData, setFormData] = useState({ 
+    bio: ''
+  });
+
+  const { bio } = formData;
+
   return (
-    <div></div>
+    <Fragment>
+      <form className="py-3">
+        <div className="mb-3">
+          <input
+            placeholder="Add bio"
+            name='email'
+            type="email"
+            className="form-control"
+            id="exampleInputEmail1"
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">Create</button>
+      </form>
+    </Fragment>
   )
 };
 

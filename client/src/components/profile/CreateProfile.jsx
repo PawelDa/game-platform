@@ -9,14 +9,17 @@ const CreateProfile = () => {
 
   const { bio } = formData;
 
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+
   return (
     <Fragment>
       <form className="py-3">
         <div className="mb-3">
           <textarea
-            placeholder="Add bio"
-            name='email'
-            type="email"
+            onChange={e => onChange(e)}
+            value={bio}
+            placeholder="Add bio - optional ;)"
+            name='bio'
             className="form-control"
             id="exampleInputEmail1"
           />

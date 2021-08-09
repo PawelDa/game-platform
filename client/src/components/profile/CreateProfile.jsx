@@ -13,7 +13,7 @@ const CreateProfile = () => {
     <Fragment>
       <form className="py-3">
         <div className="mb-3">
-          <input
+          <textarea
             placeholder="Add bio"
             name='email'
             type="email"
@@ -21,7 +21,7 @@ const CreateProfile = () => {
             id="exampleInputEmail1"
           />
         </div>
-        <button type="submit" className="btn btn-primary">Create</button>
+        <button type="submit" className="btn btn-primary">Create profile</button>
       </form>
     </Fragment>
   )

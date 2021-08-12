@@ -35,7 +35,7 @@ const EditProfile = ({
     <Fragment>
       <form className="py-3" onSubmit={e => onSubmit(e)}>
         <div className="mb-3">
-          <textarea
+          <input
             onChange={e => onChange(e)}
             value={bio}
             placeholder="Add bio - optional ;)"

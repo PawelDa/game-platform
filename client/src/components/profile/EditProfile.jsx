@@ -15,12 +15,12 @@ const EditProfile = ({
   });
 
   useEffect(() => {
-    getCurrentProfile();
+    if (!profile) getCurrentProfile();
 
     setFormData({
       bio: loading || !profile.bio ? '' : profile.bio
     }, [loading]);
-  });
+  }, [getCurrentProfile, loading, profile]);
 
   const { bio } = formData;
 
@@ -35,7 +35,7 @@ const EditProfile = ({
     <Fragment>
       <form className="py-3" onSubmit={e => onSubmit(e)}>
         <div className="mb-3">
-          <input
+          <textarea
             onChange={e => onChange(e)}
             value={bio}
             placeholder="Add bio - optional ;)"

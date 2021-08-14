@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
@@ -45,6 +45,7 @@ const EditProfile = ({
           />
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
+        <Link className="btn btn-light my-1" to='/dashboard'>Go Back</Link>
       </form>
     </Fragment>
   )

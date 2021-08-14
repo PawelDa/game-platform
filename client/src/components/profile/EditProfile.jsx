@@ -44,7 +44,7 @@ const EditProfile = ({
             id="exampleInputEmail1"
           />
         </div>
-        <button type="submit" className="btn btn-primary">Create profile</button>
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </Fragment>
   )

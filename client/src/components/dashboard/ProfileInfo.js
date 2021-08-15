@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 const ProfileInfo = (profile) => {
   return (
@@ -17,7 +16,7 @@ const ProfileInfo = (profile) => {
 };
 
 ProfileInfo.propTypes = {
-  details: PropTypes.array.isRequired
+  profile: PropTypes.object.isRequired
 };
 
 export default ProfileInfo;

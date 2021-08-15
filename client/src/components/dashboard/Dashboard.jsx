@@ -21,7 +21,7 @@ const Dashboard = ({
     <p><i className="fas fa-user"></i> Welcome {user && user.name}</p>
     {profile !== null ? (
       <Fragment>
-        <ProfileInfo profile={profile} />
+        <ProfileInfo details={profile} />
         <DashboardActions />
       </Fragment>
     ) : (

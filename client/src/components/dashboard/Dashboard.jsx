@@ -22,7 +22,10 @@ const Dashboard = ({
     {profile !== null ? (
       <Fragment>
         <ProfileInfo details={profile} />
-        <DashboardActions />
+        <div>
+          <Link to='/edit-profile' className='btn btn-primary my-1' >Edit bio</Link>
+          <button className='btn btn-danger my-1'>Delete my account</button>
+        </div>
       </Fragment>
     ) : (
       <Fragment>

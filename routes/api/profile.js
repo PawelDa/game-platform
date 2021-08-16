@@ -95,9 +95,9 @@ router.get('/user/:user_id', async (req, res) => {
 router.delete('/', auth, async (req, res) => {
   try {
     // Remove Profile
-    await Profile.findByIdAndRemove({ user: req.user.id });
+    await Profile.findOneAndRemove({ user: req.user.id });
     // Remove User
-    await User.findByIdAndRemove({ _id: req.user.id });
+    await User.findOneAndRemove({ _id: req.user.id });
 
     res.json({ msg: 'User deleted' });
   } catch (error) {

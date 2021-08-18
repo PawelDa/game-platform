@@ -9,3 +9,26 @@ const initialState = {
   loading: true,
   error: {}
 };
+
+const tableReducer = (state = initialState, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case GET_TABLES:
+      return {
+        ...state,
+        tables: payload,
+        loading: false
+      };
+    case TABLE_ERROR:
+      return {
+        ...state,
+        tables: payload,
+        loading: false
+      };
+    default:
+      return state;
+  }
+};
+
+export default tableReducer;

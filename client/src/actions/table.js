@@ -1,5 +1,5 @@
-import axios form 'axios'
-import { setAlert } from "./alert";
+import axios from 'axios'
+// import { setAlert } from "./alert";
 import {
   GET_TABLES,
   TABLE_ERROR

@@ -13,15 +13,16 @@ router.post('/', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
   
-    const table = new Table({
-      user: user.id
+    const newTable = new Table({
+      user: req.user.id
     });
-    await table.save();
+
+    const table = await newTable.save();
 
     res.json(table);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error')
+    res.status(500).send('Server Error');
   }
 });
 

@@ -1,6 +1,7 @@
 import {
   GET_TABLES,
-  TABLE_ERROR
+  TABLE_ERROR,
+  ADD_TABLE
 } from '../actions/types';
 
 const initialState = {
@@ -18,6 +19,12 @@ const tableReducer = (state = initialState, action) => {
       return {
         ...state,
         tables: payload,
+        loading: false
+      };
+    case ADD_TABLE:
+      return {
+        ...state,
+        tables: [...state.tables, payload],
         loading: false
       };
     case TABLE_ERROR:

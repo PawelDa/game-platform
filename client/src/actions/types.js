@@ -13,3 +13,4 @@ export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
 export const GET_TABLES = 'GET_TABLES';
 export const TABLE_ERROR = 'TABLE_ERROR'
+export const ADD_TABLE = 'ADD_TABLE';

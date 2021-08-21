@@ -12,7 +12,7 @@ const TableSchema = new mongoose.Schema({
   otherPlayers: [
     {
       user: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
       }
     }
@@ -20,7 +20,7 @@ const TableSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
-  },
+  }
 });
 
 module.exports = Table = mongoose.model('table', TableSchema);

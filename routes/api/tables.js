@@ -19,10 +19,10 @@ router.post('/', auth, async (req, res) => {
 
     const table = await newTable.save();
 
-    res.json(table);
+    return res.json(table);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    return res.status(500).send('Server Error');
   }
 });
 

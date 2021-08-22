@@ -30,10 +30,10 @@ export const addTable = formData => async dispatch => {
       'Content-Type': 'application/json'
     }
   }
-
+  console.log('Hello');
   try {
     const res = await axios.post('/api/tables', formData, config);
-
+    console.log(res)
     dispatch({
       type: ADD_TABLE,
       payload: res.data

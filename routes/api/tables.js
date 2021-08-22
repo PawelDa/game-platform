@@ -10,7 +10,7 @@ const Profile = require('..//../models/Profile');
 // @description     Create a table
 // @aacces          Private
 router.post('/', auth, async (req, res) => {
-  //console.log('Hello');
+  console.log('Hello');
   try {
     const user = await User.findById(req.user.id).select('-password');
     const newTable = new Table({user: req.user.id});

@@ -10,19 +10,17 @@ const Profile = require('..//../models/Profile');
 // @description     Create a table
 // @aacces          Private
 router.post('/', auth, async (req, res) => {
+  //console.log('Hello');
   try {
     const user = await User.findById(req.user.id).select('-password');
-  
-    const newTable = new Table({
-      user: req.user.id
-    });
+    const newTable = new Table({user: req.user.id});
 
     const table = await newTable.save();
 
-    return res.json(table);
+    res.json(table);
   } catch (err) {
     console.error(err.message);
-    return res.status(500).send('Server Error');
+    res.status(500).send('Server Error');
   }
 });
 

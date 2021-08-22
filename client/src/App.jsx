@@ -9,7 +9,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
 import CreateProfile from './components/profile/CreateProfile';
 import EditProfile from './components/profile/EditProfile';
-import Tables from './components/tables/tables.jsx';
+import Tables from './components/tables/Tables.jsx';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';

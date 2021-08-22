@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getTables } from '../../actions/table';
+import TableCreate from './TableCreate';
 
 const Tables = ({ getTables, table: { tables, loading } }) => {
   useEffect(() => {
     getTables();
   }, [getTables]);
-  return (
-    <div>
-      Hello
-    </div>
-  )
+  return loading ? <Spinner /> : (
+    <Fragment>
+      <TableCreate />
+      <h1 className='large'>Tables availble</h1>
+    </Fragment>
+  );
 };
 
 Tables.propTypes = {

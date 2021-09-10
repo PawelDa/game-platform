@@ -5,30 +5,104 @@ const ProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
   },
-  special: {
-    type: Boolean,
-    default: false
+  company: {
+    type: String
+  },
+  website: {
+    type: String
+  },
+  location: {
+    type: String
+  },
+  status: {
+    type: String,
+    required: true
+  },
+  skills: {
+    type: [String],
+    required: true
   },
   bio: {
     type: String
   },
-  games: {
-    winner: {
-      type: Number,
-      default: 0
+  githubusername: {
+    type: String
+  },
+  experience: [
+    {
+      title: {
+        type: String,
+        required: true
+      },
+      company: {
+        type: String,
+        required: true
+      },
+      location: {
+        type: String
+      },
+      from: {
+        type: Date,
+        required: true
+      },
+      to: {
+        type: Date
+      },
+      current: {
+        type: Boolean,
+        default: false
+      },
+      description: {
+        type: String
+      }
+    }
+  ],
+  education: [
+    {
+      school: {
+        type: String,
+        required: true
+      },
+      degree: {
+        type: String,
+        required: true
+      },
+      fieldofstudy: {
+        type: String,
+        required: true
+      },
+      from: {
+        type: Date,
+        required: true
+      },
+      to: {
+        type: Date
+      },
+      current: {
+        type: Boolean,
+        default: false
+      },
+      description: {
+        type: String
+      }
+    }
+  ],
+  social: {
+    youtube: {
+      type: String
     },
-    secondPlace: {
-      type: Number,
-      default: 0
+    twitter: {
+      type: String
     },
-    thirdPlace: {
-      type: Number,
-      default: 0
+    facebook: {
+      type: String
     },
-    forthPlace: {
-      type: Number,
-      default: 0
+    linkedin: {
+      type: String
     },
+    instagram: {
+      type: String
+    }
   },
   date: {
     type: Date,

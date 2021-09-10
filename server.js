@@ -6,10 +6,10 @@ const app = express();
 connectDb();
 
 // Initialize Middleware
-app.use(express.json({ extended: false }));
+app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('API running')
+  res.send('API running');
 });
 
 // Define Routes
@@ -21,5 +21,5 @@ app.use('/posts', require('./routes/posts'));
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+  console.log(`Server is listening on port ${PORT}`);
 });

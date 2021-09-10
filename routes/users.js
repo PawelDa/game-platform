@@ -1,38 +1,22 @@
 const express = require('express');
 const router = express.Router();
-
-// @route           GET users
-// @description     Test route
-// @acces           Public
-router.get('/', (req, res) => res.send('User route'));
-
-module.exports = router;
-
-/*
-const express = require('express');
-const router = express.Router();
+const { body, validationResult } = require('express-validator');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require('config');
-const { body, validationResult } = require('express-validator');
-// Getting User model
-const User = require('../../models/User');
-const { ReplSet } = require('mongodb');
+require('dotenv').config();
 
-// @route           POST api/users
-// @description     Register user
-// @acces           Public
+const User = require('../models/User');
+
+// Route           POST users
+// Description     Register user
+// Access          Public
 router.post(
   '/',
-  // user validation
   body('name', 'Name is required').not().notEmpty(),
-  // email validation
   body('email', 'Please provide a valid email address').isEmail(),
-  // password validation
   body('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
-
-  async (req, res, next) => {
+  async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -42,32 +26,22 @@ router.post(
 
     try {
       let user = await User.findOne({ email });
-      //if User exists
       if(user) {
         return res.status(400).json({ errors: [{ msg: 'User already exists'}] });
       }
 
-      const avatar = gravatar.url(email, {
-        s: '200',
-        r: 'pg',
-        d: 'mm'
-      });
+      const avatar = gravatar.url(email, { s: '200', r: 'pg', d: 'mm' });
 
-      user = new User({
-        name,
-        email,
-        avatar,
-        password
-      });
+      user = new User({ name, email, avatar, password });
 
-      //Encypt password
+      // Encypt Password
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
 
-      // saving user
+      // Saving User
       await user.save();
 
-      // Json web token
+      // Json Web Token
       const payload = {
         user: {
           id: user.id
@@ -76,8 +50,8 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get('jwtToken'),
-        { expiresIn: 8640 }, // expires in 24h
+        process.env.JWT,
+        { expiresIn: 604800 }, // expires in 7 days
         (err, token) => {
           if(err) throw err;
           res.json({ token });
@@ -91,6 +65,3 @@ router.post(
 );
 
 module.exports = router;
-*/
-
-

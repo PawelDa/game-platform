@@ -1,5 +1,16 @@
 const express = require('express');
 const router = express.Router();
+
+// @route           GET profile
+// @description     Test route
+// @acces           Public
+router.get('/', (req, res) => res.send('Profile route'));
+
+module.exports = router;
+
+/*
+const express = require('express');
+const router = express.Router();
 const auth = require('../../middleware/auth');
 const { body, validationResult } = require('express-validator');
 
@@ -107,3 +118,4 @@ router.delete('/', auth, async (req, res) => {
 });
 
 module.exports = router;
+*/

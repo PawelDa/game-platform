@@ -1,5 +1,16 @@
 const express = require('express');
 const router = express.Router();
+
+// @route           GET users
+// @description     Test route
+// @acces           Public
+router.get('/', (req, res) => res.send('User route'));
+
+module.exports = router;
+
+/*
+const express = require('express');
+const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -80,3 +91,6 @@ router.post(
 );
 
 module.exports = router;
+*/
+
+

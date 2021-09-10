@@ -1,7 +1,7 @@
 {
-  "name": "game-platform",
+  "name": "social-network-platform",
   "version": "1.0.0",
-  "description": "Card games platform",
+  "description": "Social network for software engineers",
   "main": "server.js",
   "scripts": {
     "start": "node server",

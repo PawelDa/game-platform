@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const config = require('config');
-const db = config.get('mongoURI');
+require('dotenv').config();
+const db = process.env.MONGO_DB;
 
-const connectDB = async () => {
+const connectDb = async () => {
   try {
     await mongoose.connect(db, {
       useNewUrlParser: true,
@@ -19,4 +19,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+module.exports = connectDb;

@@ -48,7 +48,7 @@ router.post('/',
       instagram,
       linkedin,
       facebook,
-      // spread the rest of the fields we don't need to check
+      // Spread the rest of the fields we don't need to check
       ...rest
     } = req.body;
 
@@ -68,12 +68,12 @@ router.post('/',
     // Build socialFields object
     const socialFields = { youtube, twitter, instagram, linkedin, facebook };
 
-    // normalize social fields to ensure valid url
+    // Normalize social fields to ensure valid url
     for (const [key, value] of Object.entries(socialFields)) {
       if (value && value.length > 0)
         socialFields[key] = normalize(value, { forceHttps: true });
     }
-    // add to profileFields
+    // Add to profileFields
     profileFields.social = socialFields;
 
     try {
@@ -90,6 +90,19 @@ router.post('/',
     }
   }
 );
+
+// Route           GET profile
+// Description     Get all profiles
+// Access          Public
+router.get('/', async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate('users', ['name', 'avatar']);
+    res.json(profiles);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;
 

@@ -145,4 +145,55 @@ router.delete('/', auth, async (req, res) => {
   }
 });
 
+// Route           PUT profile/experience
+// Description     Add profile experience
+// Access          Private
+router.put(
+  '/experience',
+  auth,
+  body('title', 'Title is required').not().notEmpty(),
+  body('company', 'Company is required').not().notEmpty(),
+  body('from', 'From date is required').not().notEmpty(),
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+
+      profile.experience.unshift(req.body);
+
+      await profile.save();
+
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
+// Route           DELETE profile/experience/:exp_id
+// Description     DELETE experience from profile
+// Access          Private
+router.delete('/experience/:exp_id', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    const experienceIndex = profile.experience
+      .map(item => item.id)
+      .indexOf(req.params.exp_id)
+
+    profile.experience.splice(experienceIndex, 1);
+
+    await profile.save();
+    return res.status(200).json(profile);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: 'Server error' });
+  }
+});
+
 module.exports = router;

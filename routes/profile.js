@@ -196,4 +196,56 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
   }
 });
 
+// Route           PUT profile/education
+// Description     Add profile education
+// Access          Private
+router.put(
+  '/education',
+  auth,
+  body('school', 'School is required').not().notEmpty(),
+  body('degree', 'Degree is required').not().notEmpty(),
+  body('fieldofstudy', 'Field of study is required').not().notEmpty(),
+  body('from', 'From date is required').not().notEmpty(),
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+
+      profile.education.unshift(req.body);
+
+      await profile.save();
+
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
+// Route           DELETE profile/education/:exp_id
+// Description     DELETE education from profile
+// Access          Private
+router.delete('/education/:edu_id', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    const educationIndex = profile.education
+      .map(item => item.id)
+      .indexOf(req.params.edu_id)
+
+    profile.education.splice(educationIndex, 1);
+
+    await profile.save();
+    return res.status(200).json(profile);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: 'Server error' });
+  }
+});
+
 module.exports = router;

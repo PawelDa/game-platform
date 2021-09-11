@@ -26,6 +26,71 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
+// Route           POST profile
+// Description     Create or update user profile
+// Access          Private
+router.post('/',
+  auth,
+  body('status', 'Status is required').not().notEmpty(),
+  body('skills', 'Skills is required').not().notEmpty(),
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    // Destructuring request
+    const {
+      website,
+      skills,
+      youtube,
+      twitter,
+      instagram,
+      linkedin,
+      facebook,
+      // spread the rest of the fields we don't need to check
+      ...rest
+    } = req.body;
+
+    // Profile object
+    const profileFields = {
+      user: req.user.id,
+      website:
+        website && website !== ''
+          ? normalize(website, { forceHttps: true })
+          : '',
+      skills: Array.isArray(skills)
+        ? skills
+        : skills.split(',').map((skill) => ' ' + skill.trim()),
+      ...rest
+    };
+
+    // Build socialFields object
+    const socialFields = { youtube, twitter, instagram, linkedin, facebook };
+
+    // normalize social fields to ensure valid url
+    for (const [key, value] of Object.entries(socialFields)) {
+      if (value && value.length > 0)
+        socialFields[key] = normalize(value, { forceHttps: true });
+    }
+    // add to profileFields
+    profileFields.social = socialFields;
+
+    try {
+      // Using upsert option (creates new doc if no match is found):
+      let profile = await Profile.findOneAndUpdate(
+        { user: req.user.id },
+        { $set: profileFields },
+        { new: true, upsert: true, setDefaultsOnInsert: true }
+      );
+      return res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).send('Server Error');
+    }
+  }
+);
+
 module.exports = router;
 
 /*
@@ -33,38 +98,6 @@ const express = require('express');
 const router = express.Router();
 
 
-// @route           POST api/profile
-// @description     Create or update profile
-// @acces           Private
-router.post('/', auth, async (req, res) => {
-  const { bio } = req.body;
-
-  //Build profile object
-  const profileFields = {};
-  profileFields.user = req.user.id;
-  if (bio) profileFields.bio = bio;
-  try {
-    let profile = await Profile.findOne({ user: req.user.id });
-
-    // Update profile
-    if(profile) {
-      profile = await Profile.findOneAndUpdate(
-        { user: req.user.id },
-        { $set: profileFields },
-        { new: true }
-      );
-
-      return res.json(profile);
-    }
-
-    // Create profile
-    profile = new Profile(profileFields);
-    await profile.save();
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-});
 
 // @route           GET api/profile
 // @description     Get all profiles

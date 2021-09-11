@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
 const { body, validationResult } = require('express-validator');
+const request = require('request');
+require('dotenv').config();
 
 const Profile = require('../models/Profile');
 const User = require('../models/User');
@@ -245,6 +247,18 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ msg: 'Server error' });
+  }
+});
+
+// Route           GET api/profile/github/:username
+// Description     Get user repos from github
+// Access          Public
+router.get('/github/:username', async (req, res) => {
+  try {
+    // TODO fetch https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 

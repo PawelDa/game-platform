@@ -104,60 +104,25 @@ router.get('/', async (req, res) => {
   }
 });
 
-module.exports = router;
-
-/*
-const express = require('express');
-const router = express.Router();
-
-
-
-// @route           GET api/profile
-// @description     Get all profiles
-// @acces           Public
-router.get('/', async (req, res) => {
-  try {
-    const profiles = await Profile.find().populate('user', ['name', 'avatar']);
-    res.json(profiles);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Server Error');
-  }
-});
-
-// @route           GET api/profile/:user_id
-// @description     Get profile by user_id
-// @acces           Public
+// Route           GET profile/user/:user_id
+// Description     Get profile by user ID
+// Access          Public
 router.get('/user/:user_id', async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'avatar']);
+    const profile = await Profile.findOne({
+      user: req.params.user_id
+    }).populate('users', ['name', 'avatar']);
+
     if (!profile) return res.status(400).json({ msg: 'Profile not found' });
-    res.json(profile);
-  } catch (error) {
-    console.error(error.message);
-    if (error.kind == 'ObjectId') {
+
+    return res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    if(err.kind == 'ObjectId') {
       return res.status(400).json({ msg: 'Profile not found' });
     }
-    res.status(500).send('Server Error');
-  }
-});
-
-// @route           DELETE api/profile
-// @description     Delete profile and user
-// @acces           Private
-router.delete('/', auth, async (req, res) => {
-  try {
-    // Remove Profile
-    await Profile.findOneAndRemove({ user: req.user.id });
-    // Remove User
-    await User.findOneAndRemove({ _id: req.user.id });
-
-    res.json({ msg: 'User deleted' });
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Server Error');
+    return res.status(500).json({ msg: 'Server error' });
   }
 });
 
 module.exports = router;
-*/

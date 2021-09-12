@@ -3,7 +3,6 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const { body, validationResult } = require('express-validator');
 const axios = require('axios');
-require('dotenv').config();
 
 const Profile = require('../models/Profile');
 const User = require('../models/User');

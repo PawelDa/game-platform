@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
 const { body, validationResult } = require('express-validator');
-const request = require('request');
+const axios = require('axios');
 require('dotenv').config();
 
 const Profile = require('../models/Profile');
@@ -255,10 +255,13 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 // Access          Public
 router.get('/github/:username', async (req, res) => {
   try {
-    // TODO fetch https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc
+    const url = `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`
+
+    const gitHubResponse = await axios.get(url);
+    return res.json(gitHubResponse.data);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    return res.status(404).json({ msg: 'No Github profile found' });
   }
 });
 

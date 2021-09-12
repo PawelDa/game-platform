@@ -1,0 +1,21 @@
+// Graphical variables
+@import './config/fonts';
+
+// External libraries
+@import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');
+
+// Global styling
+body {
+  padding: 20px 60px;
+  font-family: $body-font;
+  background-color: rgb(230, 230, 230);
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+* {
+  box-sizing: border-box;
+}

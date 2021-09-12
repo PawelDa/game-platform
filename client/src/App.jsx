@@ -1,8 +1,12 @@
 import React, { Fragment } from 'react';
 
+import Navbar from './components/layout/Navbar';
+import Landing from './pages/Landing';
+
 const App = () => (
   <Fragment>
-    HELLO
+    <Navbar />
+    <Landing />
   </Fragment>
 );
 

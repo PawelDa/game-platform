@@ -1,11 +1,9 @@
-import React from 'react';
-
-import './assets/stylesheets/application.scss';
+import React, { Fragment } from 'react';
 
 const App = () => (
-  <div>
+  <Fragment>
     HELLO
-  </div>
+  </Fragment>
 );
 
 export default App;

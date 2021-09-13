@@ -1,7 +1,11 @@
-// Import config, components & pages indexes
-@import './config/index';
-@import './components/index';
-@import './pages/index';
-
 // External libraries
 @import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');
+
+// Configuration
+@import './config/index';
+
+// Components
+@import './components/index';
+
+// Global styling
+@import './global-styling/index';

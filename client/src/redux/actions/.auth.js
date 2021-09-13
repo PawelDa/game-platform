@@ -9,7 +9,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_PROFILE
- } from './types';
+ } from './.types';
 import setAuthToken from '../utils/setAuthToken';
 
 // Load User

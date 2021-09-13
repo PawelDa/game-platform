@@ -4,7 +4,7 @@ import {
   GET_TABLES,
   TABLE_ERROR,
   ADD_TABLE
-} from './types';
+} from './.types';
 
 // Get tables
 export const getTables = () => async dispatch => {

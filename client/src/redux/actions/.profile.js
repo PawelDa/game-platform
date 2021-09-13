@@ -6,7 +6,7 @@ import {
   GET_PROFILE,
   PROFILE_ERROR,
   DELETE_ACCOUNT
-} from './types';
+} from './.types';
 
 
 // Get current users profile

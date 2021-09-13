@@ -7,8 +7,7 @@
   z-index: 1;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px $primary-color;
-  opacity: 0.9;
+  border-bottom: solid 1px black;
 }
 
 .navbar ul {
@@ -16,13 +15,13 @@
 }
 
 .navbar a {
-  color: #fff;
+  color: rgb(245, 245, 245);
   padding: 0.45rem;
   margin: 0 0.25rem;
 }
 
 .navbar a:hover {
-  color: $primary-color;
+  color: black;
 }
 
 .navbar .welcome span {

@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav className="navbar bg-dark">
       <h1>
-        <a href="index.html">Engineers World</a>
+        <a href="index.html"><i class="fas fa-cogs"></i> Engineers World</a>
       </h1>
       <ul>
         <li><a href="profiles.html">Engineers</a></li>

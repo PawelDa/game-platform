@@ -1,18 +1,11 @@
 import {
   REGISTER_FAIL,
   REGISTER_SUCCESS,
-  USER_LOADED,
-  AUTH_ERROR,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  LOGOUT,
-  DELETE_ACCOUNT
 } from "../actions/types";
 
-// this is state befor user will login and get access to private routes
 const initialState = {
   token: localStorage.getItem('token'),
-  // when token will be assigned then isAuthnticated variable will be True
+  // when token will be assigned isAuthnticated variable will be True
   isAuthenticated: null,
   // after data will be recived from API request it will be changed to False
   loading: true,
@@ -23,16 +16,8 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
-  switch (type) {
-    case USER_LOADED:
-      return {
-        ...state,
-        isAuthenticated: true,
-        loading: false,
-        user: payload
-      }
+  switch(type) {
     case REGISTER_SUCCESS:
-    case LOGIN_SUCCESS:
       localStorage.setItem('token', payload.token);
       return {
         ...state,
@@ -41,10 +26,6 @@ const authReducer = (state = initialState, action) => {
         loading: false
       }
     case REGISTER_FAIL:
-    case AUTH_ERROR:
-    case LOGIN_FAIL:
-    case LOGOUT:
-    case DELETE_ACCOUNT:
       localStorage.removeItem('token');
       return {
         ...state,

@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { setAlert } from '../../redux/actions/alert';
+import { register } from '../../redux/actions/auth';
 
-export const Register = ({ setAlert }) => {
+export const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,7 +24,7 @@ export const Register = ({ setAlert }) => {
     if (password !== passwordConfirm) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      console.log('User created!!!')
+      register({ name, email, password })
     }
   };
 
@@ -83,7 +84,8 @@ export const Register = ({ setAlert }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  setAlert: (msg, type) => dispatch(setAlert(msg, type))
+  setAlert: (msg, type) => dispatch(setAlert(msg, type)),
+  register: (formData) => dispatch(register(formData))
 });
 
 export default connect(null, mapDispatchToProps)(Register);

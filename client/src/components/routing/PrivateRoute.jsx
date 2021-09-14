@@ -1,13 +1,11 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 
-const PrivateRoute = ({
-  component: Component,
-  auth: {isAuthenticated, loading },
-  ...rest
-}) => (
+import { selectIsAuthenticated, selectLoading } from '../../redux/selectors/auth';
+
+const PrivateRoute = ({ isAuthenticated, loading, component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
@@ -20,12 +18,9 @@ const PrivateRoute = ({
   />
 );
 
-PrivateRoute.propTypes = {
-  auth: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = createStructuredSelector({
+  isAuthenticated: selectIsAuthenticated,
+  loading: selectLoading
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

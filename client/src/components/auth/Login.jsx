@@ -1,7 +1,12 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
 
-export const Login = () => {
+import { selectIsAuthenticated } from '../../redux/selectors/auth';
+import { login } from '../../redux/actions/auth';
+
+export const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -15,8 +20,13 @@ export const Login = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    console.log('you logged in');
+    login(formData);
   };
+
+  // Redirect if logged in
+  if(isAuthenticated) {
+    return <Redirect to='/dashboard' />
+  }
 
   return (
     <Fragment>
@@ -51,4 +61,12 @@ export const Login = () => {
   )
 };
 
-export default Login;
+const mapStateToProps = createStructuredSelector({
+  isAuthenticated: selectIsAuthenticated
+});
+
+const mapDispatchToProps = dispatch => ({
+  login: (formData) => dispatch(login(formData))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

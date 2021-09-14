@@ -1,11 +1,13 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 
+import { selectIsAuthenticated } from '../../redux/selectors/auth';
 import { setAlert } from '../../redux/actions/alert';
 import { register } from '../../redux/actions/auth';
 
-export const Register = ({ setAlert, register }) => {
+export const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,6 +29,11 @@ export const Register = ({ setAlert, register }) => {
       register({ name, email, password })
     }
   };
+
+  // Redirect if logged in
+  if(isAuthenticated) {
+    return <Redirect to='/dashboard' />
+  }
 
   return (
     <Fragment>
@@ -83,9 +90,13 @@ export const Register = ({ setAlert, register }) => {
   )
 };
 
+const mapStateToProps = createStructuredSelector({
+  isAuthenticated: selectIsAuthenticated
+});
+
 const mapDispatchToProps = dispatch => ({
   setAlert: (msg, type) => dispatch(setAlert(msg, type)),
   register: (formData) => dispatch(register(formData))
 });
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

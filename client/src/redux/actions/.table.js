@@ -6,6 +6,16 @@ import {
   ADD_TABLE
 } from './.types';
 
+/*
+export const setAlert = (msg, type) => {
+  const id = uuidv4();
+
+  return {
+    type: SET_ALERT,
+    payload: {id, msg, type}
+
+};
+*/
 // Get tables
 export const getTables = () => async dispatch => {
   try {

@@ -20,35 +20,33 @@ export const Login = () => {
 
   return (
     <Fragment>
-      <section className='container'>
-        <h1 className="large text-primary">Sign In</h1>
-        <p className="lead"><i className="fas fa-user"></i> Existing Users</p>
-        <form className="form" onSubmit={onSubmit}>
-          <div className="form-group">
-            <input
-              type="email"
-              placeholder="Email Address"
-              name="email"
-              value={email}
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              minLength="6"
-              value={password}
-              onChange={onChange}
-            />
-          </div>
-          <input type="submit" className="btn btn-black" value="Login" />
-        </form>
-        <p className="my-1">
-          Don't have an account? <strong><Link to='/register'>Register</Link></strong>
-        </p>
-      </section>
+      <h1 className="large text-primary">Sign In</h1>
+      <p className="lead"><i className="fas fa-user"></i> Existing Users</p>
+      <form className="form" onSubmit={onSubmit}>
+        <div className="form-group">
+          <input
+            type="email"
+            placeholder="Email Address"
+            name="email"
+            value={email}
+            onChange={onChange}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            minLength="6"
+            value={password}
+            onChange={onChange}
+          />
+        </div>
+        <input type="submit" className="btn btn-black" value="Login" />
+      </form>
+      <p className="my-1">
+        Don't have an account? <strong><Link to='/register'>Register</Link></strong>
+      </p>
     </Fragment>
   )
 };

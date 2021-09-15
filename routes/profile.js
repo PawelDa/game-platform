@@ -42,7 +42,6 @@ router.post('/',
 
     // Destructuring request
     const {
-      website,
       skills,
       youtube,
       twitter,

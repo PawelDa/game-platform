@@ -174,7 +174,7 @@ const CreateProfile = ({ profile: { profile, loading }, createProfile, getCurren
             type="button"
             className="btn btn-white"
           >
-            Add Social Network Links
+            Edit Social Network Links
           </button>
         </div>
         {dispalaySocialInputs && <Fragment>

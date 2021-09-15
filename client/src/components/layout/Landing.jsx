@@ -1,6 +1,15 @@
 import React from 'react'
+import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-const Landing = () => {
+import { selectIsAuthenticated } from '../../redux/selectors/auth';
+
+const Landing = ({ isAuthenticated }) => {
+  if(isAuthenticated) {
+    return <Redirect to='/dashboard' />
+  }
+
   return (
     <section className="landing">
       <div className="dark-overlay">
@@ -15,4 +24,8 @@ const Landing = () => {
   )
 };
 
-export default Landing;
+const mapStateToProps = createStructuredSelector({
+  isAuthenticated: selectIsAuthenticated
+});
+
+export default connect(mapStateToProps)(Landing);

@@ -9,7 +9,8 @@ import {
   AUTH_FAILED,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT
+  LOGOUT,
+  CLEAR_PROFILE
  } from './types';
 
 // Load User
@@ -97,5 +98,6 @@ export const login = (formData) => async dispatch => {
 
 // Logout and clear profile
 export const logout = () => dispatch => {
+  dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
 };

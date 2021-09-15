@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import { getCurrentProfile } from '../../redux/actions/profile';
@@ -8,12 +9,31 @@ import { selectProfile } from '../../redux/selectors/profile';
 
 import Spinner from '../layout/Spinner';
 
-const Dashboard = ({ getCurrentProfile, auth, profile: { profile, loading} }) => {
+const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading} }) => {
   useEffect(() => {
     getCurrentProfile();
   }, []);
 
-  return loading && profile === null ? <Spinner /> : <Fragment>something</Fragment>
+  return loading && profile === null ? (
+    <Spinner />
+  ) : (
+    <Fragment>
+      <h1 className='large text-primary'>Dashboard</h1>
+      <p className='lead'>
+        <i className='fas fa-user'>{' '}Welcome { user && user.name }</i>
+      </p>
+      {profile !== null ? (
+        <Fragment>PROFILEEEEE</Fragment>
+      ) : (
+        <Fragment>
+          <p>You haven't set up profile!</p>
+          <Link to='/create-profile' className='btn btn-black my-1'>
+            Create profile
+          </Link>
+        </Fragment>
+      )}
+    </Fragment>
+  );
 };
 
 

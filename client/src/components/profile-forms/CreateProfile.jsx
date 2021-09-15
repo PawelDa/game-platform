@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
-const CreateProfile = (props) => {
+import { createProfile } from '../../redux/actions/profile';
+
+const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({ 
     company: '',
     website: '',
@@ -35,7 +37,14 @@ const CreateProfile = (props) => {
     instagram
   } = formData;
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = e =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  
+  const onSubmit = e => {
+    e.preventDefault();
+    createProfile(formData, history);
+    document.documentElement.scrollTop = 0;
+  }
 
   return (
     <Fragment>
@@ -47,7 +56,7 @@ const CreateProfile = (props) => {
         Give some information
       </p>
       <small>*fields required</small>
-      <form className="form">
+      <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
           <select
             name="status"
@@ -205,11 +214,15 @@ const CreateProfile = (props) => {
             />
           </div>
         </Fragment>}
-        <input type="submit" className="btn btn-black my-1" />
+        <button type="submit" class="btn btn-black my-1">Submit</button>
         <a className="btn btn-white my-1" href="dashboard.html">Go Back</a>
       </form>
     </Fragment>
   )
 };
 
-export default CreateProfile;
+const mapDispatchToProps = dispatch => ({
+  createProfile: (formData, history) => dispatch(createProfile(formData, history))
+});
+
+export default connect(null, mapDispatchToProps)(withRouter(CreateProfile));

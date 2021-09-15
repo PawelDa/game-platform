@@ -8,6 +8,7 @@ import { selectAuth } from '../../redux/selectors/auth';
 import { selectProfile } from '../../redux/selectors/profile';
 
 import Spinner from '../layout/Spinner';
+import DashboardActions from './DashboardActions';
 
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading} }) => {
   useEffect(() => {
@@ -24,7 +25,9 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
         Welcome { user && user.name }
       </p>
       {profile !== null ? (
-        <Fragment>PROFILEEEEE</Fragment>
+        <Fragment>
+          <DashboardActions />
+        </Fragment>
       ) : (
         <Fragment>
           <p>You haven't set up profile!</p>

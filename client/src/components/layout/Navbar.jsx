@@ -11,13 +11,13 @@ const Navbar = ({ loading, isAuthenticated, logout }) => {
     <ul>
       <li>
         <Link to='/dashboard'>
-          <i className="fas fa-user"></i>{' '}
+          <i className="fas fa-user fa-sm"></i>{' '}
           <span className='hide-sm'>Dashboard</span>
         </Link>
       </li>
       <li>
         <a onClick={logout} href='#!'>
-          <i className="fas fa-sign-out-alt"></i>{' '}
+          <i className="fas fa-sign-out-alt fa-sm"></i>{' '}
           <span className='hide-sm'>Logout</span>
         </a>
       </li>
@@ -28,12 +28,13 @@ const Navbar = ({ loading, isAuthenticated, logout }) => {
     <ul>
       <li>
         <Link to='/register'>
-          Register
+          <i className="fas fa-plus fa-sm"></i>{' '}
+          <span className='hide-sm'>Register</span>
         </Link>
       </li>
       <li>
         <Link to='/login'>
-          <i class="fas fa-sign-in-alt"></i>{' '}
+          <i className="fas fa-sign-in-alt fa-sm"></i>{' '}
           <span className='hide-sm'>Login</span>
         </Link>
       </li>
@@ -43,7 +44,10 @@ const Navbar = ({ loading, isAuthenticated, logout }) => {
   return (
     <nav className="navbar bg-dark">
       <h1>
-        <Link to='/'><i className="fas fa-cogs"></i> Engineers World</Link>
+        <Link to='/'>
+          <i className="fas fa-cogs fa-sm"></i>{' '}
+          <span className='hide-sm'>Engineers World</span>
+        </Link>
       </h1>
       { !loading && (<Fragment>{ isAuthenticated ? authLinks : questLinks }</Fragment>) }
     </nav>

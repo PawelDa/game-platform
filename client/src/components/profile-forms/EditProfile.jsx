@@ -1,10 +1,12 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-import { createProfile } from '../../redux/actions/profile';
+import { createProfile, getCurrentProfile } from '../../redux/actions/profile';
+import { selectProfile } from '../../redux/selectors/profile';
 
-const CreateProfile = ({ createProfile, history }) => {
+const CreateProfile = ({ profile: { profile, loading }, createProfile, getCurrentProfile, history }) => {
   const [formData, setFormData] = useState({ 
     company: '',
     website: '',
@@ -21,6 +23,25 @@ const CreateProfile = ({ createProfile, history }) => {
   });
 
   const [dispalaySocialInputs, toggleSociaInputs] = useState(false)
+
+  useEffect(() => {
+    getCurrentProfile();
+
+    setFormData({
+      company: loading || !profile.company ? '' : profile.company,
+      website: loading || !profile.website ? '' : profile.website,
+      location: loading || !profile.location ? '' : profile.location,
+      status: loading || !profile.status ? '' : profile.company,
+      skills: loading || !profile.skills ? '' : profile.skills.join(','),
+      githubusername: loading || !profile.githubusername ? '' : profile.githubusername,
+      bio: loading || !profile.bio ? '' : profile.bio,
+      twitter: loading || !profile.social.twitter ? '' : profile.social.twitter,
+      facebook: loading || !profile.social.facebook ? '' : profile.social.facebook,
+      linkedin: loading || !profile.social.linkedin ? '' : profile.social.linkedin,
+      youtube: loading || !profile.social.youtube ? '' : profile.social.youtube,
+      instagram: loading || !profile.social.instagram ? '' : profile.social.instagram
+    });
+  }, [loading]);
 
   const {
     company,
@@ -43,19 +64,16 @@ const CreateProfile = ({ createProfile, history }) => {
   
   const onSubmit = e => {
     e.preventDefault();
-    createProfile(formData, history);
+    console.log(formData)
+    createProfile(formData, history, true);
     document.documentElement.scrollTop = 0;
   }
 
   return (
     <Fragment>
       <h1 className="large text-primary">
-        Create Your Profile
+        Edit Your Profile
       </h1>
-      <p className="lead">
-        <i className="fas fa-user"></i>{' '}
-        Give some information
-      </p>
       <small>*fields required</small>
       <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
@@ -222,8 +240,14 @@ const CreateProfile = ({ createProfile, history }) => {
   )
 };
 
-const mapDispatchToProps = dispatch => ({
-  createProfile: (formData, history) => dispatch(createProfile(formData, history))
+const mapStateToProps = createStructuredSelector({
+  // TODO add selector for destructured profile
+  profile: selectProfile
 });
 
-export default connect(null, mapDispatchToProps)(withRouter(CreateProfile));
+const mapDispatchToProps = dispatch => ({
+  createProfile: (formData, history, edit) => dispatch(createProfile(formData, history, edit)),
+  getCurrentProfile: () => dispatch(getCurrentProfile())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CreateProfile));

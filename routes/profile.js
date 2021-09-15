@@ -56,10 +56,6 @@ router.post('/',
     // Profile object
     const profileFields = {
       user: req.user.id,
-      website:
-        website && website !== ''
-          ? normalize(website, { forceHttps: true })
-          : '',
       skills: Array.isArray(skills)
         ? skills
         : skills.split(',').map((skill) => ' ' + skill.trim()),
@@ -69,11 +65,6 @@ router.post('/',
     // Build socialFields object
     const socialFields = { youtube, twitter, instagram, linkedin, facebook };
 
-    // Normalize social fields to ensure valid url
-    for (const [key, value] of Object.entries(socialFields)) {
-      if (value && value.length > 0)
-        socialFields[key] = normalize(value, { forceHttps: true });
-    }
     // Add to profileFields
     profileFields.social = socialFields;
 

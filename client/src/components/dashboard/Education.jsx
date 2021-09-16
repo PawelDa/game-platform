@@ -2,7 +2,9 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import  Moment from 'react-moment';
 
-const Education = ({ education }) => {
+import { deleteEducation } from '../../redux/actions/profile';
+
+const Education = ({ education, deleteEducation }) => {
   const schools = education.map((edu) => (
     <tr key={edu._id}>
       <td>{edu.school}</td>
@@ -13,7 +15,15 @@ const Education = ({ education }) => {
         }
       </td>
       <td>
-        <button className='btn btn-danger'>Delete</button>
+        <button
+          className='btn btn-danger'
+          onClick={() => {
+            deleteEducation(edu._id);
+            document.documentElement.scrollTop = 0;
+          }}
+        >
+          Delete
+        </button>
       </td>
     </tr>
   ));
@@ -36,11 +46,8 @@ const Education = ({ education }) => {
   );
 };
 
-export default Education;
- /*
 const mapDispatchToProps = dispatch => ({
-  deleteExperience: () => dispatch(deleteExperience())
+  deleteEducation: (id) => dispatch(deleteEducation(id))
 });
 
-export default connect(null, mapDispatchToProps)(Experience);
-*/
+export default connect(null, mapDispatchToProps)(Education);

@@ -2,7 +2,9 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import  Moment from 'react-moment';
 
-const Experience = ({ experience }) => {
+import { deleteExperience } from '../../redux/actions/profile';
+
+const Experience = ({ experience, deleteExperience }) => {
   const experiences = experience.map((exp) => (
     <tr key={exp._id}>
       <td>{exp.company}</td>
@@ -13,7 +15,15 @@ const Experience = ({ experience }) => {
         }
       </td>
       <td>
-        <button className='btn btn-danger'>Delete</button>
+        <button
+          className='btn btn-danger'
+          onClick={() => {
+            deleteExperience(exp._id);
+            document.documentElement.scrollTop = 0;
+          }}
+        >
+          Delete
+        </button>
       </td>
     </tr>
   ));
@@ -36,11 +46,8 @@ const Experience = ({ experience }) => {
   );
 };
 
-export default Experience;
- /*
 const mapDispatchToProps = dispatch => ({
-  deleteExperience: () => dispatch(deleteExperience())
+  deleteExperience: (id) => dispatch(deleteExperience(id))
 });
 
 export default connect(null, mapDispatchToProps)(Experience);
-*/

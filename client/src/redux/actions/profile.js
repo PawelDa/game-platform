@@ -4,7 +4,9 @@ import { setAlert } from './alert';
 import { 
   GET_PROFILE,
   PROFILE_ERROR,
-  UPDATE_PROFILE
+  UPDATE_PROFILE,
+  CLEAR_PROFILE,
+  DELETE_ACCOUNT
 } from './types';
 
 
@@ -159,5 +161,24 @@ export const deleteEducation = id => async dispatch => {
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
+  }
+};
+
+// Delete account & profile
+export const deleteAccount = () => async dispatch => {
+  if (window.confirm('Are you sure? This can NOT be undone!')) {
+    try {
+      await axios.delete('/profile');
+
+      dispatch({ type: CLEAR_PROFILE });
+      dispatch({ type: DELETE_ACCOUNT });
+
+      dispatch(setAlert('Your account has been deleted'));
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status }
+      });
+    }
   }
 };

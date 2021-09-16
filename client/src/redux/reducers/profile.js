@@ -55,8 +55,7 @@ const profileReducer = (state = initialState, action) => {
     case NO_REPOS:
       return {
         ...state,
-        repos: [],
-        loading: false
+        repos: []
       }
     default:
       return state;

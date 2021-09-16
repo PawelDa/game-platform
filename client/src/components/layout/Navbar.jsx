@@ -10,6 +10,12 @@ const Navbar = ({ loading, isAuthenticated, logout }) => {
   const authLinks = (
     <ul>
       <li>
+        <Link to='/profiles'>
+          <i class="fas fa-users fa-sm"></i>{' '}
+          <span className='hide-sm'>Users</span>
+        </Link>
+      </li>
+      <li>
         <Link to='/dashboard'>
           <i className="fas fa-user fa-sm"></i>{' '}
           <span className='hide-sm'>Dashboard</span>
@@ -26,6 +32,12 @@ const Navbar = ({ loading, isAuthenticated, logout }) => {
 
   const questLinks = (
     <ul>
+      <li>
+        <Link to='/profiles'>
+          <i class="fas fa-users fa-sm"></i>{' '}
+          <span className='hide-sm'>Users</span>
+        </Link>
+      </li>
       <li>
         <Link to='/register'>
           <i className="fas fa-user-plus fa-sm"></i>{' '}

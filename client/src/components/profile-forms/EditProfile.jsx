@@ -41,7 +41,7 @@ const CreateProfile = ({ profile: { profile, loading }, createProfile, getCurren
       youtube: loading || !profile.social.youtube ? '' : profile.social.youtube,
       instagram: loading || !profile.social.instagram ? '' : profile.social.instagram
     });
-  }, [loading, getCurrentProfile, profile]);
+  }, []);
 
   const {
     company,

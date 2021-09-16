@@ -40,12 +40,12 @@ const AddExperience = ({ addExperience, history }) => {
 
   return (
     <Fragment>
-      <h1 class="large text-primary">
-        <i class="fas fa-project-diagram"></i> Add A Job Experience
+      <h1 className="large text-primary">
+        <i className="fas fa-project-diagram"></i> Add A Job Experience
       </h1>
       <small>*fields required</small>
-      <form class="form" onSubmit={e => onSubmit(e)}>
-        <div class="form-group">
+      <form className="form" onSubmit={e => onSubmit(e)}>
+        <div className="form-group">
           <input
             type="text"
             placeholder="*Job title"
@@ -54,7 +54,7 @@ const AddExperience = ({ addExperience, history }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <input
             type="text"
             placeholder="*Company"
@@ -63,7 +63,7 @@ const AddExperience = ({ addExperience, history }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <input
             type="text"
             placeholder="Location"
@@ -72,7 +72,7 @@ const AddExperience = ({ addExperience, history }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h4>From date</h4>
           <input
             type="date"
@@ -81,7 +81,7 @@ const AddExperience = ({ addExperience, history }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <p>
             <input
               type="checkbox"
@@ -95,7 +95,7 @@ const AddExperience = ({ addExperience, history }) => {
             />{' '}Current job
           </p>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h4>To date</h4>
           <input
             type="date"
@@ -105,7 +105,7 @@ const AddExperience = ({ addExperience, history }) => {
             disabled={toDateDisabled ? 'disabled' : ''}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <textarea
             name="description"
             cols="30"

@@ -40,12 +40,12 @@ const AddEducation = ({ addEducation, history }) => {
 
   return (
     <Fragment>
-      <h1 class="large text-primary">
-        <i class="fas fa-graduation-cap"></i> Add Your Education
+      <h1 className="large text-primary">
+        <i className="fas fa-graduation-cap"></i> Add Your Education
       </h1>
       <small>*fields required</small>
-      <form class="form" onSubmit={e => onSubmit(e)}>
-        <div class="form-group">
+      <form className="form" onSubmit={e => onSubmit(e)}>
+        <div className="form-group">
           <input
             type="text"
             placeholder="*School"
@@ -54,7 +54,7 @@ const AddEducation = ({ addEducation, history }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <input
             type="text"
             placeholder="*Degree"
@@ -63,7 +63,7 @@ const AddEducation = ({ addEducation, history }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <input
             type="text"
             placeholder="Field of study"
@@ -72,7 +72,7 @@ const AddEducation = ({ addEducation, history }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h4>From date</h4>
           <input
             type="date"
@@ -81,7 +81,7 @@ const AddEducation = ({ addEducation, history }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <p>
             <input
               type="checkbox"
@@ -95,7 +95,7 @@ const AddEducation = ({ addEducation, history }) => {
             />{' '}Still studying
           </p>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h4>To date</h4>
           <input
             type="date"
@@ -105,7 +105,7 @@ const AddEducation = ({ addEducation, history }) => {
             disabled={toDateDisabled ? 'disabled' : ''}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <textarea
             name="description"
             cols="30"

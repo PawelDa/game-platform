@@ -11,7 +11,7 @@ const Navbar = ({ loading, isAuthenticated, logout }) => {
     <ul>
       <li>
         <Link to='/profiles'>
-          <i class="fas fa-users fa-sm"></i>{' '}
+          <i className="fas fa-users fa-sm"></i>{' '}
           <span className='hide-sm'>Users</span>
         </Link>
       </li>
@@ -34,7 +34,7 @@ const Navbar = ({ loading, isAuthenticated, logout }) => {
     <ul>
       <li>
         <Link to='/profiles'>
-          <i class="fas fa-users fa-sm"></i>{' '}
+          <i className="fas fa-users fa-sm"></i>{' '}
           <span className='hide-sm'>Users</span>
         </Link>
       </li>

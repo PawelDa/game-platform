@@ -43,7 +43,6 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
   );
 };
 
-
 const mapStateToProps = createStructuredSelector({
   // TODO change selectors when dashboard will be finisehd to not bring full auth and profile
   auth: selectAuth,

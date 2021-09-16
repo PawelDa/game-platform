@@ -6,6 +6,7 @@ const axios = require('axios');
 
 const Profile = require('../models/Profile');
 const User = require('../models/User');
+const Post = require('../models/Post');
 
 // Route           GET profile/me
 // Description     Get current user profile
@@ -122,11 +123,12 @@ router.get('/user/:user_id', async (req, res) => {
 router.delete('/', auth, async (req, res) => {
   try {
     await Promise.all([
-      // Remove user
-      User.findOneAndRemove({ _id: req.user.id }),
-      // Remove profile
-      Profile.findOneAndRemove({ user: req.user.id })
       // TODO remove user posts
+      Post.deleteMany({ user: req.user.id }),
+      // Remove profile
+      Profile.findOneAndRemove({ user: req.user.id }),
+      // Remove user
+      User.findOneAndRemove({ _id: req.user.id })
     ]);
 
     res.json({ msg: 'User deleted' });

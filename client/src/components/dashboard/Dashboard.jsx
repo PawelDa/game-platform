@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
-import { getCurrentProfile } from '../../redux/actions/profile';
+import { deleteAccount, getCurrentProfile } from '../../redux/actions/profile';
 import { selectAuth } from '../../redux/selectors/auth';
 import { selectProfile } from '../../redux/selectors/profile';
 
@@ -12,7 +12,7 @@ import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
 
-const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
+const Dashboard = ({ deleteAccount, getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
   useEffect(() => {
     getCurrentProfile();
   }, []);
@@ -30,6 +30,14 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
           <DashboardActions />
           <Experience experience={profile.experience} />
           <Education education={profile.education} />
+          <div className='my-2'>
+            <button
+              className='btn btn-danger'
+              onClick={() => deleteAccount()}
+            >
+              <i className='fas fa-user-minus'></i> Delete account
+            </button>
+          </div>
         </Fragment>
       ) : (
         <Fragment>
@@ -50,7 +58,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getCurrentProfile: () => dispatch(getCurrentProfile())
+  getCurrentProfile: () => dispatch(getCurrentProfile()),
+  deleteAccount: () => dispatch(deleteAccount())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

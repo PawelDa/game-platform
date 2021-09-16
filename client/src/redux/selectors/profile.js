@@ -6,3 +6,8 @@ export const selectProfile = createSelector(
   [selectState],
   state => state.profile
 );
+
+export const selectRepos = createSelector(
+  [selectProfile],
+  profile => profile.repos
+);

@@ -12,6 +12,7 @@ import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
+import ProfileGitHub from './ProfileGitHub';
 
 const Profile = ({ match, getProfileById, profile: { profile, loading }, auth }) => {
   useEffect(() => {
@@ -45,6 +46,12 @@ const Profile = ({ match, getProfileById, profile: { profile, loading }, auth })
               ))}
             </Fragment>) : (<h4>No education</h4>)}
           </div>
+          {profile.githubusername && (
+            <div className='profile-github'>
+              <h2 className='text-primary my-1'>GitHub Repositories</h2>
+              <ProfileGitHub username={profile.githubusername}/>
+            </div>
+          )}
         </div>
       </Fragment>}
     </Fragment>

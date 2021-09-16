@@ -10,6 +10,7 @@ import { selectAuth } from '../../redux/selectors/auth';
 import Spinner from '../layout/Spinner';
 import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
+import ProfileExperience from './ProfileExperience';
 
 const Profile = ({ match, getProfileById, profile: { profile, loading }, auth }) => {
   useEffect(() => {
@@ -24,9 +25,17 @@ const Profile = ({ match, getProfileById, profile: { profile, loading }, auth })
         </Link>
         {auth.isAuthenticated && auth.loading === false && auth.user._id ===
         profile.user._id && (<Link to='/edit-profile' className='btn btn-black'>Edit profile</Link>)}
-        <div className="profile-grid my-1">
+        <div className='profile-grid my-1'>
           <ProfileTop profile={profile} />
           <ProfileAbout profile={profile} />
+          <div className='profile-exp bg-white p-2'>
+            <h2 className="text-primary">Experience</h2>
+            {profile.experience.length > 0 ? (<Fragment>
+              {profile.experience.map(exp => (
+                <ProfileExperience key={exp._id} experience={exp} />
+              ))}
+            </Fragment>) : (<h4>No experience</h4>)}
+          </div>
         </div>
       </Fragment>}
     </Fragment>

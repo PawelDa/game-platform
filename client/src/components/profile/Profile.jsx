@@ -18,8 +18,10 @@ const Profile = ({ match, getProfileById, profile: { profile, loading }, auth })
     <Fragment>
       {profile === null || loading ? <Spinner /> : <Fragment>
         <Link to='/profiles' className='btn btn-white'>
-          Go Back
+          Go back
         </Link>
+        {auth.isAuthenticated && auth.loading === false && auth.user._id ===
+        profile.user._id && (<Link to='/edit-profile' className='btn btn-black'>Edit profile</Link>)}
       </Fragment>}
     </Fragment>
   )

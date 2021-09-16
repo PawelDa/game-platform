@@ -28,7 +28,7 @@ const Navbar = ({ loading, isAuthenticated, logout }) => {
     <ul>
       <li>
         <Link to='/register'>
-          <i className="fas fa-plus fa-sm"></i>{' '}
+          <i className="fas fa-user-plus"></i>{' '}
           <span className='hide-sm'>Register</span>
         </Link>
       </li>

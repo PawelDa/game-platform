@@ -10,7 +10,7 @@ const PostForm = ({ addPost }) => {
   return (
     <div className="post-form">
     <div className="bg-dark p">
-      <h3>Add your comment</h3>
+      <h3>Add a post</h3>
     </div>
     <form
       className="form my-1"

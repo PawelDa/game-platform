@@ -5,11 +5,12 @@ import Moment from 'react-moment';
 import { createStructuredSelector } from 'reselect';
 
 import { selectAuth } from '../../redux/selectors/auth';
-import { addLike, removeLike } from '../../redux/actions/post';
+import { addLike, removeLike, deletePost } from '../../redux/actions/post';
 
 const PostItem = ({
   addLike,
   removeLike,
+  deletePost,
   auth,
   post: {
     _id,
@@ -61,6 +62,7 @@ const PostItem = ({
         <button      
           type="button"
           className="btn btn-danger"
+          onClick={e => deletePost(_id)}
         >
           Delete
         </button>
@@ -75,7 +77,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   addLike: (postId) => dispatch(addLike(postId)),
-  removeLike: (postId) => dispatch(removeLike(postId))
+  removeLike: (postId) => dispatch(removeLike(postId)),
+  deletePost: (postId) => dispatch(deletePost(postId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostItem);

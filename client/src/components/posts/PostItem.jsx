@@ -5,8 +5,11 @@ import Moment from 'react-moment';
 import { createStructuredSelector } from 'reselect';
 
 import { selectAuth } from '../../redux/selectors/auth';
+import { addLike, removeLike } from '../../redux/actions/post';
 
 const PostItem = ({
+  addLike,
+  removeLike,
   auth,
   post: {
     _id,
@@ -34,11 +37,19 @@ const PostItem = ({
       <p className="post-date">
         Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
       </p>
-      <button type="button" className="btn btn-light">
+      <button
+        type="button"
+        className="btn btn-light"
+        onClick={e => addLike(_id)}
+      >
         <i className="fas fa-thumbs-up"></i>{' '}
         <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
       </button>
-      <button type="button" className="btn btn-light">
+      <button
+        type="button"
+        className="btn btn-light"
+        onClick={e => removeLike(_id)}
+      >
         <i className="fas fa-thumbs-down"></i>
       </button>
       <Link to={`/posts/${_id}`} className="btn btn-black">
@@ -48,10 +59,10 @@ const PostItem = ({
       </Link>
       {!auth.loading && user === auth.user._id && (    
         <button      
-            type="button"
-            className="btn btn-danger"
+          type="button"
+          className="btn btn-danger"
         >
-            Delete
+          Delete
         </button>
       )}
     </div>
@@ -63,7 +74,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  //logout: () => dispatch(logout())
+  addLike: (postId) => dispatch(addLike(postId)),
+  removeLike: (postId) => dispatch(removeLike(postId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostItem);

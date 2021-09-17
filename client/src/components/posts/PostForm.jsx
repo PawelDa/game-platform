@@ -17,6 +17,7 @@ const PostForm = ({ addPost }) => {
       onSubmit={e => {
         e.preventDefault();
         addPost({ text });
+        document.documentElement.scrollTop = 0;
         setText('');
       }}
     >

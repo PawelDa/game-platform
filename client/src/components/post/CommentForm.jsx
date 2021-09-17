@@ -18,6 +18,7 @@ const CommentForm = ({ postId, addComment }) => {
         e.preventDefault();
         addComment(postId, { text });
         setText('');
+        document.documentElement.scrollTop = 0;
       }}
     >
       <textarea

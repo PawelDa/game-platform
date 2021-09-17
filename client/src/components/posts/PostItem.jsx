@@ -64,7 +64,10 @@ const PostItem = ({
           <button      
             type="button"
             className="btn btn-danger"
-            onClick={e => deletePost(_id)}
+            onClick={e => {
+              deletePost(_id);
+              document.documentElement.scrollTop = 0;
+            }}
           >
             Delete
           </button>

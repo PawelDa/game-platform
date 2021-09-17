@@ -9,6 +9,7 @@ import { selectLoading, selectPostPost } from '../../redux/selectors/post';
 import PostItem from '../posts/PostItem';
 import Spinner from '../layout/Spinner';
 import CommentForm from './CommentForm';
+import CommentItem from './CommentItem';
 
 const Post = ({ getPost, post, loading, match }) => {
   useEffect(() => {
@@ -19,6 +20,11 @@ const Post = ({ getPost, post, loading, match }) => {
     <Link to='/posts' className='btn btn-white'>Back to posts</Link>
     <PostItem post={post} showAction={false} />
     <CommentForm postId={post._id} />
+    <div className='comment'>
+      {post.comments.map(comment => (
+        <CommentItem key={comment._id} comment={comment} postId={post._id} />
+      ))}
+    </div>
   </Fragment>;
 };
 

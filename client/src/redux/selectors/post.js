@@ -7,6 +7,11 @@ export const selectPost = createSelector(
   state => state.post
 );
 
+export const selectPostPost = createSelector(
+  [selectPost],
+  post => post.post
+);
+
 export const selectPosts = createSelector(
   [selectPost],
   post => post.posts

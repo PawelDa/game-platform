@@ -1,10 +1,12 @@
 import React, { Fragment, useEffect } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { getPost } from '../../redux/actions/post';
 import { selectLoading, selectPostPost } from '../../redux/selectors/post';
 
+import PostItem from '../posts/PostItem';
 import Spinner from '../layout/Spinner';
 
 const Post = ({ getPost, post, loading, match }) => {
@@ -12,7 +14,10 @@ const Post = ({ getPost, post, loading, match }) => {
     getPost(match.params.id);
   }, [getPost, match]);
 
-  return (<div>Post</div>);
+  return loading || post === null ? <Spinner /> : <Fragment>
+    <Link to='/posts' className='btn btn-white'>Back to posts</Link>
+    <PostItem post={post} showAction={false} />
+  </Fragment>;
 };
 
 const mapStateToProps = createStructuredSelector({

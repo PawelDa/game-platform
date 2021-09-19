@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import { deleteAccount, getCurrentProfile } from '../../redux/actions/profile';
-import { selectAuth } from '../../redux/selectors/auth';
-import { selectProfile } from '../../redux/selectors/profile';
+import { selectUser } from '../../redux/selectors/auth';
+import { selectLoading, selectProfileProfile } from '../../redux/selectors/profile';
 
 import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
 
-const Dashboard = ({ deleteAccount, getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
+const Dashboard = ({ deleteAccount, getCurrentProfile, user, profile, loading }) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
@@ -52,9 +52,9 @@ const Dashboard = ({ deleteAccount, getCurrentProfile, auth: { user }, profile: 
 };
 
 const mapStateToProps = createStructuredSelector({
-  // TODO change selectors when dashboard will be finisehd to not bring full auth and profile
-  auth: selectAuth,
-  profile: selectProfile
+  user: selectUser,
+  profile: selectProfileProfile,
+  loading: selectLoading,
 });
 
 const mapDispatchToProps = dispatch => ({

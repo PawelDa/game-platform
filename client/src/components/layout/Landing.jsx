@@ -1,7 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
 import { selectIsAuthenticated } from '../../redux/selectors/auth';
 
@@ -24,8 +23,8 @@ const Landing = ({ isAuthenticated }) => {
   )
 };
 
-const mapStateToProps = createStructuredSelector({
-  isAuthenticated: selectIsAuthenticated
+const mapStateToProps = state => ({
+  isAuthenticated: selectIsAuthenticated(state)
 });
 
 export default connect(mapStateToProps)(Landing);

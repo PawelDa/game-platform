@@ -54,7 +54,7 @@ const Dashboard = ({ deleteAccount, getCurrentProfile, user, profile, loading })
 const mapStateToProps = createStructuredSelector({
   user: selectUser,
   profile: selectProfileProfile,
-  loading: selectLoading,
+  loading: selectLoading
 });
 
 const mapDispatchToProps = dispatch => ({

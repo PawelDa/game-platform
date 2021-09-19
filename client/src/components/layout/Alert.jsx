@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
 import { selectAlerts } from '../../redux/selectors/alert';
 
@@ -11,8 +10,8 @@ const Alert = ({ alerts }) =>
     </div>
   ));
 
-const mapStateToProps = createStructuredSelector({
-  alerts: selectAlerts
+const mapStateToProps = state => ({
+  alerts: selectAlerts(state)
 });
 
 export default connect(mapStateToProps)(Alert);

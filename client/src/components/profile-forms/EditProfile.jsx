@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { createProfile, getCurrentProfile } from '../../redux/actions/profile';
-import { selectProfile } from '../../redux/selectors/profile';
+import { selectLoading, selectProfileProfile } from '../../redux/selectors/profile';
 
-const CreateProfile = ({ profile: { profile, loading }, createProfile, getCurrentProfile, history }) => {
+const CreateProfile = ({ profile, loading, createProfile, getCurrentProfile, history }) => {
   const [formData, setFormData] = useState({ 
     company: '',
     website: '',
@@ -241,8 +241,8 @@ const CreateProfile = ({ profile: { profile, loading }, createProfile, getCurren
 };
 
 const mapStateToProps = createStructuredSelector({
-  // TODO add selector for destructured profile
-  profile: selectProfile
+  profile: selectProfileProfile,
+  loading: selectLoading
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -21,3 +21,8 @@ export const selectEducation = createSelector(
   [selectProfile],
   profile => profile.profile.education
 );
+
+export const selectProfiles = createSelector(
+  [selectProfile],
+  profile => profile.profiles
+);

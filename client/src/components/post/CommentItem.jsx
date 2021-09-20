@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import Moment from 'react-moment';
 
 import { deleteComment } from '../../redux/actions/post';
@@ -48,8 +47,8 @@ const CommentItem = ({
   </div>
 );
 
-const mapStateToProps = createStructuredSelector({
-  auth: selectAuth
+const mapStateToProps = state => ({
+  auth: selectAuth(state)
 });
 
 const mapDispatchToProps = dispatch => ({

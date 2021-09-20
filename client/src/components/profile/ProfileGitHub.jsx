@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
 import { getGithubRepos } from '../../redux/actions/profile';
 import { selectRepos } from '../../redux/selectors/profile';
@@ -45,8 +44,8 @@ const ProfileGitHub = ({ username, getGithubRepos, repos }) => {
   )
 };
 
-const mapStateToProps = createStructuredSelector({
-  repos: selectRepos
+const mapStateToProps = state => ({
+  repos: selectRepos(state)
 });
   
 const mapDispatchToProps = dispatch => ({

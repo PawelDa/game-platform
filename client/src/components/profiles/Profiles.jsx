@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { getProfiles } from '../../redux/actions/profile';
-import { selectProfile } from '../../redux/selectors/profile';
+import { selectLoading, selectProfiles } from '../../redux/selectors/profile';
 
 import Spinner from '../layout/Spinner';
 import ProfileItem from './ProfileItem';
 
-const Profile = ({ getProfiles, profile: { profiles, loading } }) => {
+const Profile = ({ getProfiles, profiles, loading }) => {
   useEffect(() => {
     getProfiles();
   }, [getProfiles]);
@@ -39,8 +39,8 @@ const Profile = ({ getProfiles, profile: { profiles, loading } }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  // TODO destructure selectors
-  profile: selectProfile
+  profiles: selectProfiles,
+  loading: selectLoading
 });
 
 const mapDispatchToProps = dispatch => ({
